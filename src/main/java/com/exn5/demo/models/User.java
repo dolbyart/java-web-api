@@ -30,6 +30,11 @@ public class User {
         this.created = created;
     }
 
+    /*public User(String fullName, String password, String email) {
+        this.fullName = fullName;
+        this.password = password;
+    }*/
+
     @Id
     @Column(name = "USERID", unique = true, nullable = true)
     public UUID getUserId() {

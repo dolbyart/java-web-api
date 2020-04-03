@@ -1,0 +1,71 @@
+USE [master]
+GO
+
+/****** Object:  Database [PA-Persons]    Script Date: 03-04-2020 10:58:37 ******/
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'PA-Persons')
+
+    begin
+        CREATE DATABASE [PA-Persons]
+            CONTAINMENT = NONE
+        ALTER DATABASE [PA-Persons] SET AUTO_SHRINK ON
+        ALTER DATABASE [PA-Persons] SET AUTO_UPDATE_STATISTICS ON
+        ALTER DATABASE [PA-Persons] SET CURSOR_CLOSE_ON_COMMIT OFF
+        ALTER DATABASE [PA-Persons] SET RECOVERY FULL
+        ALTER DATABASE [PA-Persons] SET  MULTI_USER
+        ALTER DATABASE [PA-Persons] SET  READ_WRITE
+    end
+GO
+
+/*IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+    begin
+        EXEC [PA-Persons].[dbo].[sp_fulltext_database] @action = 'enable'
+    end
+GO
+
+ALTER DATABASE [PA-Persons] SET AUTO_SHRINK ON
+GO
+
+ALTER DATABASE [PA-Persons] SET AUTO_UPDATE_STATISTICS ON
+GO
+
+ALTER DATABASE [PA-Persons] SET CURSOR_CLOSE_ON_COMMIT OFF
+GO
+
+ALTER DATABASE [PA-Persons] SET RECOVERY FULL
+GO
+
+ALTER DATABASE [PA-Persons] SET  MULTI_USER
+GO
+
+ALTER DATABASE [PA-Persons] SET  READ_WRITE
+GO*/
+
+USE [PA-Persons]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 03-04-2020 10:55:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[UserId] [uniqueidentifier] NOT NULL,
+	[FullName] [nvarchar](500) NOT NULL,
+	[Password] [varchar](125) NOT NULL,
+	[Email] [varchar](250) NOT NULL,
+	[Token] [varchar](max) NULL,
+	[Created] [datetime] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY NONCLUSTERED
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [UK_6dotkott2kjsp8vw4d0m25fb7] UNIQUE NONCLUSTERED
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+

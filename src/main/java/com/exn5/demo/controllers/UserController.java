@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("")
     public User create(@Valid @RequestBody User user) throws BadRequestException {
         String email = user.getEmail();
-        if (userRepository.findByEmail(email) != null)
+        if (!Objects.isNull(userRepository.findByEmail(email)))
             throw new BadRequestException("User with email:: " + email + " exists");
 
         user.setCreated(new Date());
